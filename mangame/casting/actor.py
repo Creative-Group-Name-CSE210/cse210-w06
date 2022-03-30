@@ -1,3 +1,4 @@
+import constants
 from mangame.shared.color import Color
 from mangame.shared.point import Point
 
