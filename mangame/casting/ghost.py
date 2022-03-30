@@ -10,7 +10,7 @@ class Ghost(Actor):
 
         self.set_text('g')
         self.set_color(constants.RED)
-        self.set_position(Point(400, 200))
+        self.set_position(Point(650, 300))
         self.set_velocity(Point(0,0))
 
     def turn_head(self, velocity):

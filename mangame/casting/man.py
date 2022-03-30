@@ -9,7 +9,7 @@ class Man(Actor):
 
         self.set_text('c')
         self.set_color(constants.YELLOW)
-        self.set_position(Point(400, 200))
+        self.set_position(Point(250, 300))
         self.set_velocity(Point(0,0))
 
     def turn_head(self, velocity):
