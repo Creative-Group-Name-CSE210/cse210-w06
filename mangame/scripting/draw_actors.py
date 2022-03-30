@@ -29,11 +29,13 @@ class DrawActorsAction(Action):
         score = cast.get_first_actor("scores")
         man = cast.get_first_actor("players")
         ghost = cast.get_second_actor("players")
+        walls = cast.get_actors("walls")
         messages = cast.get_actors("messages")
 
         self._video_service.clear_buffer()
         self._video_service.draw_actor(man)
         self._video_service.draw_actor(ghost)
         # self._video_service.draw_actor(score) # uncomment this after score is finished
+        self._video_service.draw_actors(walls, True)
         self._video_service.draw_actors(messages, True)
         self._video_service.flush_buffer()

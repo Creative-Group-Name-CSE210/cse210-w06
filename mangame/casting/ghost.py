@@ -9,7 +9,7 @@ class Ghost(Actor):
         self._can_eat_man = True
 
         self.set_text('g')
-        self.set_color(constants.YELLOW)
+        self.set_color(constants.RED)
         self.set_position(Point(400, 200))
         self.set_velocity(Point(0,0))
 
