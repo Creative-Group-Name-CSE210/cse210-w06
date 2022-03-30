@@ -5,7 +5,8 @@ from mangame.shared.point import Point
 
 class Wall(Actor):
 
-    def __init__(self):
+    def __init__(self, position):
         super().__init__()
         self._color = constants.BLUE
         self._text = "#"
+        self._position = position
