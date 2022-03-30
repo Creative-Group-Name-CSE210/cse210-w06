@@ -42,10 +42,10 @@ class HandleCollisionsAction(Action):
         ghost = cast.get_second_actor('players')
 
         for wall in walls:
-            if man.get_position().equals(wall.get_position()):
+            if man.get_position() == wall.get_position():
                 man.set_velocity(Point(0,0))
 
-            if ghost.get_position().equals(wall.get_position()):
+            if ghost.get_position() == wall.get_position():
                 man.set_velocity(Point(0,0))
       
     
