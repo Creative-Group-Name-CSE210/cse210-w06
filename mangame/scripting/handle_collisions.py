@@ -42,10 +42,18 @@ class HandleCollisionsAction(Action):
         ghost = cast.get_second_actor('players')
 
         for wall in walls:
+            """
+            Collision can be handled by only turning players once they're in line with the grid, or
+            have the actors based off of the same grid as the maze and check collision based off of
+            the grid.
+            Below doesn't work yet because the player position and wall position are never equal.
+            """
             if man.get_position() == (wall.get_position()):
                 man.set_velocity(Point(0,0))
+                print("man has collided")
 
             if ghost.get_position() == (wall.get_position()):
                 ghost.set_velocity(Point(0,0))
+                print("ghost has collided")
 
     
