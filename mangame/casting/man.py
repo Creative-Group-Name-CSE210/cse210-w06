@@ -2,7 +2,7 @@ import constants
 from mangame.casting.actor import Actor
 from mangame.shared.point import Point
 
-class Ghost(Actor):
+class Man(Actor):
     def __init__(self):
         super().__init__()
         self._can_eat_ghost = False
