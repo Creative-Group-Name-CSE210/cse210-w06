@@ -1,23 +1,23 @@
 import constants
 import csv
 
-from mangame.casting.wall import Wall
+from mangame.casting.food import Food
 from mangame.shared.point import Point
 
-class ConstructMazeAction():
+class SpawnFoodAction():
     def __init__(self):
         self.width = constants.MAX_X # 900
         self.height = constants.MAX_Y # 600
         self.interval = 12
         self.maze_list = [] # [0,0] is in the top left
-    
-    def build_maze(self):
+
+    def spawn_food(self):
         for y in range(0, self.height, self.interval):
-            list_of_walls = []
+            list_of_food = []
             for x in range(0, self.width, self.interval):
-                wall = Wall(Point(x, y))
-                list_of_walls.append(wall)
-            self.maze_list.append(list_of_walls)
+                food = Food(Point(x, y))
+                list_of_food.append(food)
+            self.maze_list.append(list_of_food)
         self.cut_out_maze()
         return self.maze_list
     
@@ -39,7 +39,7 @@ class ConstructMazeAction():
         items_to_delete = []
         for x in range(0, len_csv_line):
             for y in range(0, len_parsed_csv):
-                if parsed_csv[y][x] != "x":
+                if parsed_csv[y][x] != "o":
                     items_to_delete.append([y,x])
         for item in reversed(items_to_delete):
             y = item[0]
