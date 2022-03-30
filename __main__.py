@@ -8,7 +8,7 @@ from mangame.casting.wall import Wall
 from mangame.scripting.script import Script
 from mangame.scripting.control_actors import ControlActorsAction
 from mangame.scripting.move_actors import MoveActorsAction
-# from mangame.scripting.handle_collisions import HandleCollisionsAction
+from mangame.scripting.handle_collisions import HandleCollisionsAction
 from mangame.scripting.draw_actors import DrawActorsAction
 from mangame.scripting.construct_maze import ConstructMazeAction
 from mangame.directing.director import Director
@@ -41,7 +41,7 @@ def main():
     script = Script()
     script.add_action("input", ControlActorsAction(keyboard_service))
     script.add_action("update", MoveActorsAction())
-    # script.add_action("update", HandleCollisionsAction())
+    script.add_action("update", HandleCollisionsAction())
     script.add_action("output", DrawActorsAction(video_service))
 
     director = Director(video_service)

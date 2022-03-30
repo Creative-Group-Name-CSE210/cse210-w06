@@ -1,4 +1,7 @@
-class HandleCollisionsAction(action):
+from mangame.shared.point import Point
+from mangame.scripting.action import Action
+
+class HandleCollisionsAction(Action):
     """
     An update action that handles interactions between the actors.
     
@@ -23,8 +26,8 @@ class HandleCollisionsAction(action):
         if not self._is_game_over:
             """self._handle_food_collision(cast)"""
             self._handle_trail_collision(cast)
-            self._handle_segment_collision(cast)
-            self._handle_game_over(cast)
+            #self._handle_segment_collision(cast)
+            #self._handle_game_over(cast)
 
     def _handle_trail_collision(self, cast):
         """Updates the score and moves the food if the man collides with the food.
@@ -33,6 +36,16 @@ class HandleCollisionsAction(action):
             cast (Cast): The cast of Actors in the game.
         """
 
-  
+    def _handle_wall_collision(self, cast):
+        walls = cast.get_actors('walls')
+        man = cast.get_first_actor('players')
+        ghost = cast.get_second_actor('players')
+
+        for wall in walls:
+            if man.get_position().equals(wall.get_position()):
+                man.set_velocity(Point(0,0))
+
+            if ghost.get_position().equals(wall.get_position()):
+                man.set_velocity(Point(0,0))
       
     
