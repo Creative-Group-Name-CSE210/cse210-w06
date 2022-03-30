@@ -7,7 +7,7 @@ from mangame.casting.ghost import Ghost
 from mangame.scripting.script import Script
 from mangame.scripting.control_actors import ControlActorsAction
 from mangame.scripting.move_actors import MoveActorsAction
-from mangame.scripting.handle_collisions import HandleCollisionsAction
+# from mangame.scripting.handle_collisions import HandleCollisionsAction
 from mangame.scripting.draw_actors import DrawActorsAction
 from mangame.directing.director import Director
 from mangame.services.keyboard_service import KeyboardService
@@ -27,7 +27,11 @@ def main():
     script = Script()
     script.add_action("input", ControlActorsAction(keyboard_service))
     script.add_action("update", MoveActorsAction())
+    # script.add_action("update", HandleCollisionsAction())
+    script.add_action("output", DrawActorsAction(video_service))
 
+    director = Director(video_service)
+    director.start_game(cast, script)
 
 
 if __name__ == "__main__":

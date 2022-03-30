@@ -59,8 +59,14 @@ class ControlActorsAction(Action):
         if self._keyboard_service.is_key_down('k'):
             self._direction2 = Point(0, constants.CELL_SIZE)
         
-        snake = cast.get_first_actor("snakes")
-        snake.turn_head(self._direction1)
+        # snake = cast.get_first_actor("snakes") # these need to be updated
+        # snake.turn_head(self._direction1)
 
-        snake2 = cast.get_second_actor("snakes")
-        snake2.turn_head(self._direction2)
+        # snake2 = cast.get_second_actor("snakes")
+        # snake2.turn_head(self._direction2)
+
+        man = cast.get_first_actor("players")
+        ghost = cast.get_second_actor("players")
+
+        man.turn_head(self._direction1)
+        ghost.turn_head(self._direction2)

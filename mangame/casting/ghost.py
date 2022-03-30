@@ -14,7 +14,7 @@ class Ghost(Actor):
         self.set_velocity(Point(0,0))
 
     def turn_head(self, velocity):
-        self._text.set_velocity(velocity)
+        self.set_velocity(velocity)
 
     def can_eat_man(self, boolean):
         self._can_eat_man = boolean
