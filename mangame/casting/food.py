@@ -18,12 +18,7 @@ class Food(Actor):
         self.set_color(constants.WHITE)
         # self.reset()
         self._position = position
+ 
+    """def reset_food(self):"""
 
-    def display_food(self):
-        """fills in the spots that there is no wall with food"""
-        
-        
-    def reset_food(self):
-        if not_eaten == True:
-            display_food() 
 
