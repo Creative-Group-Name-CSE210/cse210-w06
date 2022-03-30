@@ -14,7 +14,7 @@ class Food(Actor):
         super().__init__()
         self._points = 0
         self._font_size = 15
-        self.set_text("o")
+        self.set_text(".")
         self.set_color(constants.WHITE)
         # self.reset()
         self._position = position
