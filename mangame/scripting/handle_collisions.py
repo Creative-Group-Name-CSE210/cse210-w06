@@ -47,5 +47,5 @@ class HandleCollisionsAction(Action):
 
             if ghost.get_position() == (wall.get_position()):
                 ghost.set_velocity(Point(0,0))
-      
+
     
