@@ -1,4 +1,4 @@
-class Score(Actor):
+class Score(actor):
     """
     A record of points made or lost. 
     
