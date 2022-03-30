@@ -11,6 +11,7 @@ from mangame.scripting.move_actors import MoveActorsAction
 from mangame.scripting.handle_collisions import HandleCollisionsAction
 from mangame.scripting.draw_actors import DrawActorsAction
 from mangame.scripting.construct_maze import ConstructMazeAction
+from mangame.scripting.spawn_food import SpawnFoodAction
 from mangame.directing.director import Director
 from mangame.services.keyboard_service import KeyboardService
 from mangame.services.video_service import VideoService
@@ -32,6 +33,12 @@ def main():
             # y_counter += 1
             cast.add_actor("walls", wall)
     # print(x_counter, "across and", y_counter, "down") # 75 across and 50 down (when interval is 12)
+
+    food_spawner = SpawnFoodAction()
+    food = food_spawner.spawn_food()
+    for list in food:
+        for item in list:
+            cast.add_actor("food", item)
 
     # cast.add_actor("scores", Score())
     

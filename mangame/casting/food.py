@@ -1,7 +1,6 @@
 from mangame.casting.actor import Actor
 from mangame.casting.wall import Wall
-from mangame.casting.man import man 
-from constants import constants
+import constants
 
 class Food(Actor):
 
@@ -10,20 +9,16 @@ class Food(Actor):
     display can be different"""
     not_eaten = True 
 
-    def __init__(self):
+    def __init__(self, position):
         
         super().__init__()
         self._points = 0
         self._font_size = 15
-        self.set_text()
+        self.set_text("o")
         self.set_color(constants.WHITE)
-        self.reset()
+        # self.reset()
+        self._position = position
+ 
+    """def reset_food(self):"""
 
-    def display_food(self):
-        """fills in the spots that there is no wall with food"""
-        
-        
-    def reset_food(self):
-        if not_eaten == True:
-            display_food() 
 

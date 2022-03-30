@@ -8,7 +8,5 @@ class Powerup(Food):
 
     def __init__(self):
         self.points = 30
-        self.set_text(".")
-        self._font_size = 50
 
 

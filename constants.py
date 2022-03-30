@@ -3,7 +3,7 @@ from mangame.shared.color import Color
 
 COLUMNS = 40
 ROWS = 20
-CELL_SIZE = 15
+CELL_SIZE = 10 # This is what changes the speed of stuffs
 MAX_X = 900
 MAX_Y = 600
 FRAME_RATE = 15
