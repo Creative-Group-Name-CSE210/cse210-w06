@@ -1,5 +1,6 @@
 from mangame.shared.point import Point
 from mangame.scripting.action import Action
+import math
 
 class HandleCollisionsAction(Action):
     """
@@ -25,16 +26,15 @@ class HandleCollisionsAction(Action):
         """
         if not self._is_game_over:
             """self._handle_food_collision(cast)"""
-            self._handle_trail_collision(cast)
+            self._handle_wall_collision(cast)
             #self._handle_segment_collision(cast)
             #self._handle_game_over(cast)
 
-    def _handle_trail_collision(self, cast):
-        """Updates the score and moves the food if the man collides with the food.
-        
-        Args:
-            cast (Cast): The cast of Actors in the game.
-        """
+    def calculate_distance(self, x1, y1, x2, y2):
+        x_distance = abs(x1 - x2)
+        y_distance = abs(y1 - y2)
+        distance = math.sqrt((x_distance * x_distance) + (y_distance * y_distance))
+        return distance
 
     def _handle_wall_collision(self, cast):
         walls = cast.get_actors('walls')
@@ -45,14 +45,25 @@ class HandleCollisionsAction(Action):
             """
             Collision can be handled by only turning players once they're in line with the grid, or
             have the actors based off of the same grid as the maze and check collision based off of
-            the grid.
+            the grid, or get the distance between the two positions and if it's less than x have them
+            collide.
             Below doesn't work yet because the player position and wall position are never equal.
             """
-            if man.get_position() == (wall.get_position()):
+            man_pos = man.get_position()
+            ghost_pos = ghost.get_position()
+            wall_pos = wall.get_position()
+            man_coords = [man_pos.get_x(), man_pos.get_y()]
+            ghost_coords = [ghost_pos.get_x(), ghost_pos.get_y()]
+            wall_coord = [wall_pos.get_x(), wall_pos.get_y()]
+
+            man_wall_distance = self.calculate_distance(man_coords[0], man_coords[1], wall_coord[0], wall_coord[1])
+            ghost_wall_distance = self.calculate_distance(ghost_coords[0], ghost_coords[1], wall_coord[0], wall_coord[1])
+
+            if man_wall_distance < 8:
                 man.set_velocity(Point(0,0))
                 print("man has collided")
 
-            if ghost.get_position() == (wall.get_position()):
+            if ghost_wall_distance < 8:
                 ghost.set_velocity(Point(0,0))
                 print("ghost has collided")
 
