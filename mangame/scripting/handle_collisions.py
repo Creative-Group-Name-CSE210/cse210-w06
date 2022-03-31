@@ -60,6 +60,7 @@ class HandleCollisionsAction(Action):
             man_wall_distance = self.calculate_distance(man_coords[0], man_coords[1], wall_coord[0], wall_coord[1])
             ghost_wall_distance = self.calculate_distance(ghost_coords[0], ghost_coords[1], wall_coord[0], wall_coord[1])
 
+            # this doesn't work because control_actors.py is constantly updating the velocity
             if man_wall_distance < 8:
                 man.set_velocity(Point(0,0))
                 print("man has collided")
