@@ -1,5 +1,4 @@
 import constants
-
 from mangame.casting.cast import Cast
 from mangame.casting.score import Score
 from mangame.casting.man import Man
