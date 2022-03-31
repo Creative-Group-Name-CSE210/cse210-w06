@@ -9,3 +9,6 @@ class Lives(Actor):
     def lose_life(self):
         if self._lives > 0:
             self._lives -= 1
+
+    def get_life(self):
+        return self._lives
