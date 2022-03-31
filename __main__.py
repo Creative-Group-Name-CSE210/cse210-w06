@@ -15,12 +15,14 @@ from mangame.scripting.spawn_food import SpawnFoodAction
 from mangame.directing.director import Director
 from mangame.services.keyboard_service import KeyboardService
 from mangame.services.video_service import VideoService
+from mangame.casting.lives import Lives
 
 def main():
 
     cast = Cast()
     cast.add_actor("players", Man())
     cast.add_actor("players", Ghost())
+    cast.add_actor('lives', Lives())
 
     maze_constructor = ConstructMazeAction()
     maze = maze_constructor.build_maze()

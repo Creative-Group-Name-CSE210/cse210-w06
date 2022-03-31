@@ -29,6 +29,7 @@ class HandleCollisionsAction(Action):
             self._handle_wall_collision(cast)
             #self._handle_segment_collision(cast)
             #self._handle_game_over(cast)
+            self._handle_player_collision(cast)
 
     def calculate_distance(self, x1, y1, x2, y2):
         x_distance = abs(x1 - x2)
@@ -66,5 +67,26 @@ class HandleCollisionsAction(Action):
             if ghost_wall_distance < 8:
                 ghost.set_velocity(Point(0,0))
                 print("ghost has collided")
+
+    def _handle_player_collision(self, cast):   
+        man = cast.get_first_actor('players')
+        ghost = cast.get_second_actor('players')
+        lives = cast.get_first_actor('lives')
+
+        man_pos = man.get_position()
+        ghost_pos = ghost.get_position()
+        man_coords = [man_pos.get_x(), man_pos.get_y()]
+        ghost_coords = [ghost_pos.get_x(), ghost_pos.get_y()]
+        man_ghost_distance = self.calculate_distance(man_coords[0], man_coords[1], ghost_coords[0], ghost_coords[1])
+
+        if man_ghost_distance <= 5:
+            if ghost._can_eat_man == True:
+                lives.lose_life()
+                man.set_position(Point(250, 300))
+                ghost.set_position(Point(650, 300))
+
+            elif man._can_eat_ghost == True:
+                ghost.set_position(Point(650,300))
+
 
     
