@@ -92,17 +92,17 @@ class ControlActorsAction(Action):
         if self._stop_man:
             self._direction1 = Point(0, 0)
             if direction1_deets[0] != 0:
-                man.set_position(Point(man_coords[0] + direction1_deets[0], man_coords[1]))
+                man.set_position(Point(man_coords[0] - direction1_deets[0], man_coords[1]))
             elif direction1_deets[1] != 0:
-                man.set_position(Point(man_coords[0], man_coords[1] + direction1_deets[1]))
+                man.set_position(Point(man_coords[0], man_coords[1] - direction1_deets[1]))
             self._stop_man = False
         
         if self._stop_ghost:
             self._direction2 = Point(0, 0)
             if direction2_deets[0] != 0:
-                ghost.set_position(Point(ghost_coords[0] + direction2_deets[0], ghost_coords[1]))
+                ghost.set_position(Point(ghost_coords[0] - direction2_deets[0], ghost_coords[1]))
             elif direction2_deets[1] != 0:
-                ghost.set_position(Point(ghost_coords[0], ghost_coords[1] + direction2_deets[1]))
+                ghost.set_position(Point(ghost_coords[0], ghost_coords[1] - direction2_deets[1]))
             self._stop_ghost = False
 
 
