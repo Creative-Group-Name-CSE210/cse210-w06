@@ -1,5 +1,6 @@
 from mangame.shared.point import Point
 from mangame.scripting.action import Action
+from mangame.scripting.control_actors import ControlActorsAction
 import math
 
 class HandleCollisionsAction(Action):
@@ -13,9 +14,10 @@ class HandleCollisionsAction(Action):
         _is_game_over (boolean): Whether or not the game is over.
     """
 
-    def __init__(self):
+    def __init__(self, script):
         """Constructs a new HandleCollisionsAction."""
         self._is_game_over = False
+        self.script = script
 
     def execute(self, cast, script):
         """Executes the handle collisions action.
@@ -25,8 +27,8 @@ class HandleCollisionsAction(Action):
             script (Script): The script of Actions in the game.
         """
         if not self._is_game_over:
-            """self._handle_food_collision(cast)"""
-            self._handle_wall_collision(cast)
+            self._handle_food_collision(cast)
+            self._handle_wall_collision(cast, self.script)
             #self._handle_segment_collision(cast)
             #self._handle_game_over(cast)
             self._handle_player_collision(cast)
@@ -37,7 +39,24 @@ class HandleCollisionsAction(Action):
         distance = math.sqrt((x_distance * x_distance) + (y_distance * y_distance))
         return distance
 
-    def _handle_wall_collision(self, cast):
+    def _handle_food_collision(self, cast):
+        foods = cast.get_actors("food")
+        man = cast.get_first_actor('players')
+
+        for food in foods:
+            man_pos = man.get_position()
+            food_pos = food.get_position()
+            man_coords = [man_pos.get_x(), man_pos.get_y()]
+            food_coord = [food_pos.get_x(), food_pos.get_y()]
+
+            man_food_distance = self.calculate_distance(man_coords[0], man_coords[1], food_coord[0], food_coord[1])
+
+            if man_food_distance < 8:
+                food.get_eaten()
+                print("man has eaten")
+
+
+    def _handle_wall_collision(self, cast, script):
         walls = cast.get_actors('walls')
         man = cast.get_first_actor('players')
         ghost = cast.get_second_actor('players')
@@ -62,7 +81,10 @@ class HandleCollisionsAction(Action):
 
             # this doesn't work because control_actors.py is constantly updating the velocity
             if man_wall_distance < 8:
-                man.set_velocity(Point(0,0))
+                actions = script.get_actions("input")
+                for action in actions:
+                    action.stop_man(True)
+                
                 print("man has collided")
 
             if ghost_wall_distance < 8:

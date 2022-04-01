@@ -21,4 +21,5 @@ class Food(Actor):
  
     """def reset_food(self):"""
 
-
+    def get_eaten(self):
+        self.set_color(constants.BLACK)

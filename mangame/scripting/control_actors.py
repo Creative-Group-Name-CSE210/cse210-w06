@@ -21,6 +21,14 @@ class ControlActorsAction(Action):
         self._keyboard_service = keyboard_service
         self._direction1 = Point(constants.CELL_SIZE, 0)
         self._direction2 = Point(constants.CELL_SIZE, 0)
+        self._stop_man = False
+        self._stop_ghost = False
+    
+    def stop_man(self, boolean):
+        self._stop_man = boolean
+    
+    def stop_ghost(self, boolean):
+        self._stop_ghost = boolean
 
     def execute(self, cast, script):
         """Executes the control actors action.
@@ -58,6 +66,14 @@ class ControlActorsAction(Action):
         # down
         if self._keyboard_service.is_key_down('k'):
             self._direction2 = Point(0, constants.CELL_SIZE)
+        
+        if self._stop_man:
+            self._direction1 = Point(0, 0)
+            self._stop_man = False
+        
+        if self._stop_ghost:
+            self._direction2 = Point(0, 0)
+            self._stop_man = False
 
 
         man = cast.get_first_actor("players")
