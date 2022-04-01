@@ -53,8 +53,6 @@ class HandleCollisionsAction(Action):
 
             if man_food_distance < 8:
                 food.get_eaten()
-                print("man has eaten")
-
 
     def _handle_wall_collision(self, cast, script):
         walls = cast.get_actors('walls')
@@ -80,16 +78,13 @@ class HandleCollisionsAction(Action):
             ghost_wall_distance = self.calculate_distance(ghost_coords[0], ghost_coords[1], wall_coord[0], wall_coord[1])
 
             # this doesn't work because control_actors.py is constantly updating the velocity
-            if man_wall_distance < 8:
-                actions = script.get_actions("input")
+            actions = script.get_actions("input")
+            if man_wall_distance < 12:
                 for action in actions:
                     action.stop_man(True)
                 
-                print("man has collided")
-
             if ghost_wall_distance < 8:
                 ghost.set_velocity(Point(0,0))
-                print("ghost has collided")
 
     def _handle_player_collision(self, cast):   
         man = cast.get_first_actor('players')
