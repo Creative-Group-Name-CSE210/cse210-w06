@@ -78,11 +78,11 @@ class HandleCollisionsAction(Action):
             ghost_wall_distance = self.calculate_distance(ghost_coords[0], ghost_coords[1], wall_coord[0], wall_coord[1])
 
             actions = script.get_actions("input")
-            if man_wall_distance < 10:
+            if man_wall_distance < 8:
                 for action in actions:
                     action.stop_man(True)
                 
-            if ghost_wall_distance < 10:
+            if ghost_wall_distance < 8:
                 for action in actions:
                     action.stop_ghost(True)
 
