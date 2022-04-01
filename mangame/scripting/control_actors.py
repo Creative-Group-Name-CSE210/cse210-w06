@@ -40,52 +40,54 @@ class ControlActorsAction(Action):
         man = cast.get_first_actor("players")
         ghost = cast.get_second_actor("players")
 
-        # left
-        if self._keyboard_service.is_key_down('a'):
-            # self._direction1 = Point(-constants.CELL_SIZE, 0)
-            man.take_step(Point(-constants.CELL_SIZE, 0))
-        
-        # right
-        if self._keyboard_service.is_key_down('d'):
-            # self._direction1 = Point(constants.CELL_SIZE, 0)
-            man.take_step(Point(constants.CELL_SIZE, 0))
-        
-        # up
-        if self._keyboard_service.is_key_down('w'):
-            # self._direction1 = Point(0, -constants.CELL_SIZE)
-            man.take_step(Point(0, -constants.CELL_SIZE))
-        
-        # down
-        if self._keyboard_service.is_key_down('s'):
-            # self._direction1 = Point(0, constants.CELL_SIZE)
-            man.take_step(Point(0, constants.CELL_SIZE))
-        
-        # left
-        if self._keyboard_service.is_key_down('j'):
-            # self._direction2 = Point(-constants.CELL_SIZE, 0)
-            ghost.take_step(Point(-constants.CELL_SIZE, 0))
-        
-        # right
-        if self._keyboard_service.is_key_down('l'):
-            # self._direction2 = Point(constants.CELL_SIZE, 0)
-            ghost.take_step(Point(constants.CELL_SIZE, 0))
-        
-        # up
-        if self._keyboard_service.is_key_down('i'):
-            # self._direction2 = Point(0, -constants.CELL_SIZE)
-            ghost.take_step(Point(0, -constants.CELL_SIZE))
-        
-        # down
-        if self._keyboard_service.is_key_down('k'):
-            # self._direction2 = Point(0, constants.CELL_SIZE)
-            ghost.take_step(Point(0, constants.CELL_SIZE))
-        
         direction1_deets = [self._direction1.get_x(), self._direction1.get_y()]
         direction2_deets = [self._direction2.get_x(), self._direction2.get_y()]
         man_pos = man.get_position()
         ghost_pos = ghost.get_position()
         man_coords = [man_pos.get_x(), man_pos.get_y()]
         ghost_coords = [ghost_pos.get_x(), ghost_pos.get_y()]
+
+        # left
+        if self._keyboard_service.is_key_down('a'):
+            self._direction1 = Point(-constants.CELL_SIZE, 0)
+            # man.take_step(Point(-constants.CELL_SIZE, 0))
+        
+        # right
+        if self._keyboard_service.is_key_down('d'):
+            self._direction1 = Point(constants.CELL_SIZE, 0)
+            # man.take_step(Point(constants.CELL_SIZE, 0))
+        
+        # up
+        if self._keyboard_service.is_key_down('w'):
+            self._direction1 = Point(0, -constants.CELL_SIZE)
+            # man.take_step(Point(0, -constants.CELL_SIZE))
+        
+        # down
+        if self._keyboard_service.is_key_down('s'):
+            self._direction1 = Point(0, constants.CELL_SIZE)
+            # man.take_step(Point(0, constants.CELL_SIZE))
+        
+        # left
+        if self._keyboard_service.is_key_down('j'):
+            self._direction2 = Point(-constants.CELL_SIZE, 0)
+            # ghost.take_step(Point(-constants.CELL_SIZE, 0))
+        
+        # right
+        if self._keyboard_service.is_key_down('l'):
+            self._direction2 = Point(constants.CELL_SIZE, 0)
+            # ghost.take_step(Point(constants.CELL_SIZE, 0))
+        
+        # up
+        if self._keyboard_service.is_key_down('i'):
+            self._direction2 = Point(0, -constants.CELL_SIZE)
+            # ghost.take_step(Point(0, -constants.CELL_SIZE))
+        
+        # down
+        if self._keyboard_service.is_key_down('k'):
+            self._direction2 = Point(0, constants.CELL_SIZE)
+            # ghost.take_step(Point(0, constants.CELL_SIZE))
+        
+        
 
         if self._stop_man:
             self._direction1 = Point(0, 0)

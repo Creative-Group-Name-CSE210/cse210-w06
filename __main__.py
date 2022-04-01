@@ -3,7 +3,6 @@ from mangame.casting.cast import Cast
 from mangame.casting.score import Score
 from mangame.casting.man import Man
 from mangame.casting.ghost import Ghost
-from mangame.casting.wall import Wall
 from mangame.scripting.script import Script
 from mangame.scripting.control_actors import ControlActorsAction
 from mangame.scripting.move_actors import MoveActorsAction
