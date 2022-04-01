@@ -24,3 +24,7 @@ class Ghost(Actor):
     
     def start_move(self, velocity):
         self.set_velocity(velocity)
+    
+    def take_step(self, velocity):
+        velocity_coords = [velocity.get_x(), velocity.get_y()]
+        self._position = Point(self._position.get_x() + velocity_coords[0], self._position.get_y() + velocity_coords[1])
