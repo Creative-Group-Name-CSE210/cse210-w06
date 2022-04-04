@@ -13,10 +13,8 @@ class EndGame(Action):
 
         if life > 0:
             pass
-            print(life)
         elif life == 0:
             self._handle_game_over(cast)
-            print('game_over')
 
     def _handle_game_over(self, cast):
         """Shows the 'game over' message and turns the snake and food white if the game is over.
