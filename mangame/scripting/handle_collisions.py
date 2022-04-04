@@ -104,7 +104,6 @@ class HandleCollisionsAction(Action):
                     lives.set_life(lives.get_life()-1)
                     man.set_position(Point(250, 300))
                     ghost.set_position(Point(650, 300))
-                    print(lives.get_life())
 
 
                     for action in actions:
