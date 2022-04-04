@@ -28,10 +28,10 @@ class HandleCollisionsAction(Action):
         """
         if not self._is_game_over:
             self._handle_food_collision(cast)
-            self._handle_wall_collision(cast, self.script)
+            self._handle_wall_collision(cast, script)
             #self._handle_segment_collision(cast)
             #self._handle_game_over(cast)
-            self._handle_player_collision(cast)
+            self._handle_player_collision(cast, script)
 
     def calculate_distance(self, x1, y1, x2, y2):
         x_distance = abs(x1 - x2)
@@ -86,10 +86,11 @@ class HandleCollisionsAction(Action):
                 for action in actions:
                     action.stop_ghost(True)
 
-    def _handle_player_collision(self, cast):   
+    def _handle_player_collision(self, cast, script):   
         man = cast.get_first_actor('players')
         ghost = cast.get_second_actor('players')
         lives = cast.get_first_actor('lives')
+        actions = script.get_actions("input")
 
         man_pos = man.get_position()
         ghost_pos = ghost.get_position()
@@ -103,6 +104,13 @@ class HandleCollisionsAction(Action):
                     lives.lose_life()
                     man.set_position(Point(250, 300))
                     ghost.set_position(Point(650, 300))
+
+
+                    for action in actions:
+                        action.stop_man(True)
+                        action.stop_ghost(True)
+                
+
 
             elif man._can_eat_ghost == True:
                 ghost.set_position(Point(650,300))
