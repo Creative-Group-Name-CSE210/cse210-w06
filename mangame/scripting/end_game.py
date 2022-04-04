@@ -13,8 +13,10 @@ class EndGame(Action):
 
         if life > 0:
             pass
+            print(life)
         elif life == 0:
-            self._handle_game_over
+            self._handle_game_over(cast)
+            print('game_over')
 
     def _handle_game_over(self, cast):
         """Shows the 'game over' message and turns the snake and food white if the game is over.
@@ -22,20 +24,18 @@ class EndGame(Action):
         Args:
             cast (Cast): The cast of Actors in the game.
         """
-        if self._is_game_over:
-            man = cast.get_first_actor("player")
-            ghost = cast.get_second_actor("player")
+        man = cast.get_first_actor("players")
+        ghost = cast.get_second_actor("players")
 
-            x = int(constants.MAX_X / 2)
-            y = int(constants.MAX_Y / 2)
-            position = Point(x, y)
+        x = int(constants.MAX_X / 2)
+        y = int(constants.MAX_Y / 2)
+        position = Point(x, y)
 
-            message = Actor()
-            message.set_text("Game Over!")
-            message.set_position(position)
-            cast.add_actor("messages", message)
+        message = Actor()
+        message.set_text("Game Over!")
+        message.set_position(position)
+        cast.add_actor("messages", message)
 
-            man.set_color(constants.WHITE)
+        man.set_color(constants.WHITE)
 
-            ghost.set_color(constants.WHITE)
-            """food.set_color(constants.WHITE)"""
+        ghost.set_color(constants.WHITE)
