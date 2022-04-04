@@ -14,7 +14,7 @@ from mangame.directing.director import Director
 from mangame.services.keyboard_service import KeyboardService
 from mangame.services.video_service import VideoService
 from mangame.casting.lives import Lives
-
+from mangame.scripting.end_game import EndGame
 def main():
 
     cast = Cast()
@@ -49,6 +49,7 @@ def main():
     script.add_action("input", ControlActorsAction(keyboard_service))
     script.add_action("update", MoveActorsAction())
     script.add_action("update", HandleCollisionsAction(script))
+    script.add_action('update', EndGame())
     script.add_action("output", DrawActorsAction(video_service))
 
     director = Director(video_service)

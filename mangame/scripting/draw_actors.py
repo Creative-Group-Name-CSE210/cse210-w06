@@ -32,6 +32,7 @@ class DrawActorsAction(Action):
         walls = cast.get_actors("walls")
         food = cast.get_actors("food")
         messages = cast.get_actors("messages")
+        lives = cast.get_first_actor('lives')
 
         self._video_service.clear_buffer()
         self._video_service.draw_actor(man)
@@ -39,5 +40,6 @@ class DrawActorsAction(Action):
         # self._video_service.draw_actor(score) # uncomment this after score is finished
         self._video_service.draw_actors(walls, True)
         self._video_service.draw_actors(food, True)
+        self._video_service.draw_actor(lives)
         self._video_service.draw_actors(messages, True)
         self._video_service.flush_buffer()

@@ -98,10 +98,10 @@ class HandleCollisionsAction(Action):
         ghost_coords = [ghost_pos.get_x(), ghost_pos.get_y()]
         man_ghost_distance = self.calculate_distance(man_coords[0], man_coords[1], ghost_coords[0], ghost_coords[1])
 
-        if man_ghost_distance <= 5:
+        if man_ghost_distance <= 8:
             if ghost._can_eat_man == True:
                 if lives._lives > 0:
-                    lives.lose_life()
+                    lives.set_life(lives.get_life()-1)
                     man.set_position(Point(250, 300))
                     ghost.set_position(Point(650, 300))
 
