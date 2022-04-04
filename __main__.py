@@ -21,6 +21,7 @@ def main():
     cast.add_actor("players", Man())
     cast.add_actor("players", Ghost())
     cast.add_actor('lives', Lives())
+    cast.add_actor('score', Score())
 
     maze_constructor = ConstructMazeAction()
     maze = maze_constructor.build_maze()

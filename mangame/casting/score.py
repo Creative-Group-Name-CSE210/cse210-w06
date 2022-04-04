@@ -1,5 +1,6 @@
-
+import constants
 from mangame.casting.actor import Actor
+from mangame.shared.point import Point
 
 
 class Score(Actor):
@@ -17,6 +18,8 @@ class Score(Actor):
         super().__init__()
         self._points = 0
         self.add_points(0)
+        self.set_position(Point(constants.MAX_X - 80, 0))
+        self.set_text(f'points: {self._points}')
 
     def add_points(self, points):
         """Adds the given points to the score's total points.

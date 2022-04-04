@@ -26,7 +26,7 @@ class DrawActorsAction(Action):
             cast (Cast): The cast of Actors in the game.
             script (Script): The script of Actions in the game.
         """
-        score = cast.get_first_actor("scores")
+        score = cast.get_first_actor("score")
         man = cast.get_first_actor("players")
         ghost = cast.get_second_actor("players")
         walls = cast.get_actors("walls")
@@ -37,6 +37,7 @@ class DrawActorsAction(Action):
         self._video_service.clear_buffer()
         self._video_service.draw_actor(man)
         self._video_service.draw_actor(ghost)
+        self._video_service.draw_actor(score)
         # self._video_service.draw_actor(score) # uncomment this after score is finished
         self._video_service.draw_actors(walls, True)
         self._video_service.draw_actors(food, True)
